@@ -1,0 +1,91 @@
+esphome:
+  name: "${device_name}"
+  name_add_mac_suffix: false
+  project:
+    name: "${project_name}"
+    version: "${project_version}"
+
+esp32:
+  board: esp32-evb
+  # framework:
+  #   type: esp-idf
+  #   sdkconfig_options:
+  #     CONFIG_ETH_RMII_CLK_OUTPUT : y
+  #     LOG_LOCAL_LEVEL: ESP_LOG_DEBUG
+
+preferences:
+  flash_write_interval: 2min
+
+api:
+
+ota:
+
+mdns:
+  disabled: false
+
+web_server:
+  port: 80
+
+debug:
+  update_interval: 5s
+
+# Logger must be at least debug (default)
+logger:
+  level: debug
+  baud_rate: 0
+
+ethernet:
+  type: JL1101
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk_mode: GPIO17_OUT
+  phy_addr: 0
+  use_address: serverroom-node.stal
+
+i2c:
+  sda: GPIO5
+  scl: GPIO4
+  scan: true
+
+uart:
+  rx_pin: GPIO3
+  tx_pin: GPIO1
+  baud_rate: 9600
+
+modbus:
+
+
+
+sensor:
+
+    
+button:
+
+  - platform: output
+    name: "${friendly_name} Gate Close"
+    output: relay2
+    duration: 500ms
+  - platform: output
+    name: "${friendly_name} Gate Open"
+    output: relay3
+    duration: 500ms
+
+
+switch:
+  - platform: gpio
+    name: "${friendly_name} Garage Heating"
+    pin: GPIO12
+    id: relay4
+    restore_mode: ${relay_restore_mode}
+
+output:
+  - platform: gpio
+    pin: GPIO16
+    id: relay1
+  - platform: gpio
+    pin: GPIO2
+    id: relay2
+  - platform: gpio
+    pin: GPIO32
+    id: relay3
+
