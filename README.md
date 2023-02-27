@@ -1,4 +1,4 @@
-# Dingitian-Board-ESPHOME
+# Dingtian-Board-ESPHOME
 
 Esphome config for Dingtian relay board
 
